@@ -6,7 +6,9 @@
 //  Copyright 2011 Nexiles GmbH. All rights reserved.
 //
 
+#import "debug.h"
 #import "CategoryItemViewController.h"
+#import "LocationDetailViewController.h"
 
 
 @implementation CategoryItemViewController
@@ -15,35 +17,30 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-/*
 - (void)viewDidLoad {
+    DBGS;
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-*/
 
-/*
 - (void)viewWillAppear:(BOOL)animated {
+    DBGS;
     [super viewWillAppear:animated];
 }
-*/
-/*
 - (void)viewDidAppear:(BOOL)animated {
+    DBGS;
     [super viewDidAppear:animated];
 }
-*/
-/*
 - (void)viewWillDisappear:(BOOL)animated {
+    DBGS;
     [super viewWillDisappear:animated];
 }
-*/
-/*
 - (void)viewDidDisappear:(BOOL)animated {
+    DBGS;
     [super viewDidDisappear:animated];
 }
-*/
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -58,13 +55,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 0;
+    return 5;
 }
 
 
@@ -128,14 +125,12 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
+
+    LocationDetailViewController *detailViewController = [[LocationDetailViewController alloc] init];
+
     // Pass the selected object to the new view controller.
     [self.navigationController pushViewController:detailViewController animated:YES];
     [detailViewController release];
-    */
 }
 
 
