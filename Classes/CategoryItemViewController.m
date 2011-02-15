@@ -29,6 +29,23 @@
 #pragma mark -
 #pragma mark network code {{{1
 
+- (void)         enqueueURL:(NSURL *)url
+          didFinishSelector:(SEL)finish
+            didFailSelector:(SEL)fail
+                   userInfo:(NSDictionary *)info
+{
+    //DBGS;
+    //DBG(url);
+    //DBG(info);
+
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request setDidFinishSelector: finish];
+    [request setDidFailSelector: fail];
+    [request setUserInfo: info];
+    [[self queue] addOperation:request];
+}
+
 - (void)loadCategoryIndex
 {
     DBGS;
@@ -43,17 +60,14 @@
 
     NSURL *url = [NSURL URLWithString:@"/en/index.json"
                         relativeToURL:baseURL];
-
     DBG(url);
 
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-    [request setDelegate:self];
-    [request setDidFinishSelector:@selector(categoryIndexRequestDone:)];
-    [request setDidFailSelector:@selector(requestFailed:)];
-    [[self queue] addOperation:request]; //queue is an NS
+    [self       enqueueURL: url
+         didFinishSelector: @selector(categoryIndexRequestDone:)
+           didFailSelector: @selector(requestFailed:)
+                  userInfo: nil];
 
     [[self queue] go];
-
 }
 
 - (void)categoryIndexRequestDone:(ASIHTTPRequest *)request
@@ -67,9 +81,36 @@
 
     DBG(self.categories);
 
-    [[self tableView] reloadData];
+    // now load all location indices
+    for (NSDictionary *category in [self categories]) {
+        NSString *path = [NSString stringWithFormat: @"/en/%@/index.json", [category objectForKey: @"id"]];
+        NSURL *url = [NSURL URLWithString:path
+                            relativeToURL:baseURL];
+
+        [self       enqueueURL: url
+             didFinishSelector: @selector(locationIndexRequestDone:)
+               didFailSelector: @selector(requestFailed:)
+                      userInfo: category];
+    }
+
+    //[[self queue] go];
 
     //[result release];
+}
+
+- (void)locationIndexRequestDone:(ASIHTTPRequest *)request
+{
+    DBGS;
+    NSString       *response = [request responseString];
+    NSDictionary   *category = [request userInfo];
+
+    NSMutableDictionary *result = [response JSONValue];
+    NSArray                *loc = [result objectForKey:@"items"];
+
+    [[self locations] setObject: loc
+                         forKey: [category objectForKey: @"title"]];
+
+    [[self tableView] reloadData];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -83,6 +124,14 @@
 - (void)viewDidLoad {
     DBGS;
     [super viewDidLoad];
+
+    if (!self.locations) {
+        [self setLocations: [[[NSMutableDictionary alloc] init] autorelease]];
+    }
+
+    if (!self.categories) {
+        [self setCategories: [[[NSMutableArray alloc] init] autorelease]];
+    }
 
     [self loadCategoryIndex];
 
@@ -118,16 +167,29 @@
 #pragma mark -
 #pragma mark Table view data source {{{1
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     // Return the number of sections.
-    return 1;
+    return [[self categories] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    // The header for the section is the region name -- get this from the region at the section index.
+    NSDictionary *category = [[self categories] objectAtIndex: section];
+    return [category objectForKey: @"title"];
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     // Return the number of rows in the section.
     DBGS;
-    return [[self categories] count];
+    NSDictionary *category = [[self categories] objectAtIndex: section];
+    NSString     *categoryTitle = [category objectForKey: @"title"];
+    NSArray      *sectionLocations = [[self locations] objectForKey: categoryTitle];
+    return [sectionLocations count];
 }
 
 
@@ -144,10 +206,16 @@
                                        reuseIdentifier:CellIdentifier] autorelease];
     }
 
-    NSDictionary *category = [[self categories] objectAtIndex: [indexPath row]];
-    DBG(category);
+    NSDictionary *category = [[self categories] objectAtIndex: [indexPath section]];
+    NSString     *categoryTitle = [category objectForKey: @"title"];
+    NSArray      *sectionLocations = [[self locations] objectForKey: categoryTitle];
+    DBG(sectionLocations);
 
-    [[cell textLabel] setText: [category objectForKey: @"title"]];
+    NSDictionary *location = [sectionLocations objectAtIndex: [indexPath row]];
+    DBG(location);
+
+    [[cell textLabel] setText: [location objectForKey: @"title"]];
+    [[cell detailTextLabel] setText: [location objectForKey: @"description"]];
 
     return cell;
 }
