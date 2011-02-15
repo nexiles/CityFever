@@ -33,13 +33,14 @@
           didFinishSelector:(SEL)finish
             didFailSelector:(SEL)fail
                    userInfo:(NSDictionary *)info
+                   delegate:(id)delegate
 {
     //DBGS;
-    //DBG(url);
+    DBG(url);
     //DBG(info);
 
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-    [request setDelegate:self];
+    [request setDelegate: delegate];
     [request setDidFinishSelector: finish];
     [request setDidFailSelector: fail];
     [request setUserInfo: info];
@@ -65,7 +66,8 @@
     [self       enqueueURL: url
          didFinishSelector: @selector(categoryIndexRequestDone:)
            didFailSelector: @selector(requestFailed:)
-                  userInfo: nil];
+                  userInfo: nil
+                  delegate: self];
 
     [[self queue] go];
 }
@@ -88,7 +90,8 @@
         [self       enqueueURL: url
              didFinishSelector: @selector(locationIndexRequestDone:)
                didFailSelector: @selector(requestFailed:)
-                      userInfo: category];
+                      userInfo: category
+                      delegate: self];
     }
 }
 
@@ -127,6 +130,10 @@
         [self setCategories: [[[NSMutableArray alloc] init] autorelease]];
     }
 
+    //if (!self.locations) {
+        //[self setLocations: [[[NSMutableDictionary alloc] init] autorelease]];
+    //}
+
     [self loadCategoryIndex];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -143,10 +150,19 @@
     DBGS;
     [super viewDidAppear:animated];
 }
+
+- (void)viewDidUnload {
+    DBGS;
+    //[self setLocations: nil];
+    [self setLocationIndex: nil];
+    [self setCategories: nil];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     DBGS;
     [super viewWillDisappear:animated];
 }
+
 - (void)viewDidDisappear:(BOOL)animated {
     DBGS;
     [super viewDidDisappear:animated];
@@ -162,6 +178,21 @@
 
 #pragma mark -
 #pragma mark Table view data source {{{1
+
+-(NSDictionary *)locationForIndexPath:(NSIndexPath *)indexPath
+{
+    DBGS;
+
+    NSDictionary *category = [[self categories] objectAtIndex: [indexPath section]];
+    NSString     *categoryTitle = [category objectForKey: @"title"];
+    NSArray      *sectionLocations = [[self locationIndex] objectForKey: categoryTitle];
+    //DBG(sectionLocations);
+
+    NSDictionary *location = [sectionLocations objectAtIndex: [indexPath row]];
+    //DBG(location);
+
+    return location;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -202,13 +233,8 @@
                                        reuseIdentifier:CellIdentifier] autorelease];
     }
 
-    NSDictionary *category = [[self categories] objectAtIndex: [indexPath section]];
-    NSString     *categoryTitle = [category objectForKey: @"title"];
-    NSArray      *sectionLocations = [[self locationIndex] objectForKey: categoryTitle];
-    DBG(sectionLocations);
-
-    NSDictionary *location = [sectionLocations objectAtIndex: [indexPath row]];
-    DBG(location);
+    NSDictionary *location = [self locationForIndexPath: indexPath];
+    //DBG(location);
 
     [[cell textLabel] setText: [location objectForKey: @"title"]];
     [[cell detailTextLabel] setText: [location objectForKey: @"description"]];
@@ -260,12 +286,34 @@
 #pragma mark -
 #pragma mark Table view delegate {{{1
 
+- (void) loadLocation:(NSDictionary *)location
+        forController:(LocationDetailViewController *)controller
+{
+    NSString *path = [NSString stringWithFormat: @"%@/index.json", [location objectForKey: @"path"]];
+    NSURL *url = [NSURL URLWithString:path
+                        relativeToURL:baseURL];
+
+    [self       enqueueURL: url
+         didFinishSelector: @selector(requestFinished:)
+           didFailSelector: @selector(requestFailed:)
+                  userInfo: location
+                  delegate: controller];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     LocationDetailViewController *detailViewController = [[LocationDetailViewController alloc] init];
 
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    // enqueue loading of location details
+    NSDictionary *location = [self locationForIndexPath: indexPath];
+    DBG(location);
+    [self loadLocation: location forController: detailViewController];
+
+
+    // push view to navigation controller
+    [self.navigationController
+        pushViewController:detailViewController
+                  animated:YES];
     [detailViewController release];
 }
 
@@ -276,24 +324,12 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc. that aren't in use.
 }
 
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-    //
-
-    [locationIndex release];
-    locationIndex = nil;
-
-    [categories release];
-    categories = nil;
-}
 
 
 - (void)dealloc {
+    DBGS;
     [self setQueue: nil];
     [self setBaseURL: nil];
     [super dealloc];
