@@ -10,16 +10,81 @@
 #import "CategoryItemViewController.h"
 #import "LocationDetailViewController.h"
 
+#import "JSON/JSON.h"
+#import "ASIHTTPRequest.h"
+#import "ASINetworkQueue.h"
+
 
 @implementation CategoryItemViewController
 
+#define BFEVER_URL @"http://localhost:28001"
+
+@synthesize queue;
+@synthesize baseURL;
+
+@synthesize categories;
+@synthesize locations;
+
 
 #pragma mark -
-#pragma mark View lifecycle
+#pragma mark network code {{{1
+
+- (void)loadCategoryIndex
+{
+    DBGS;
+
+    if (!baseURL) {
+        [self setBaseURL: [NSURL URLWithString: BFEVER_URL]];
+    }
+
+    if (![self queue]) {
+        [self setQueue:[[[ASINetworkQueue alloc] init] autorelease]];
+    }
+
+    NSURL *url = [NSURL URLWithString:@"/en/index.json"
+                        relativeToURL:baseURL];
+
+    DBG(url);
+
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request setDidFinishSelector:@selector(categoryIndexRequestDone:)];
+    [request setDidFailSelector:@selector(requestFailed:)];
+    [[self queue] addOperation:request]; //queue is an NS
+
+    [[self queue] go];
+
+}
+
+- (void)categoryIndexRequestDone:(ASIHTTPRequest *)request
+{
+    DBGS;
+
+    NSString *response = [request responseString];
+
+    NSMutableDictionary *result = [response JSONValue];
+    self.categories = [result objectForKey:@"items"];
+
+    DBG(self.categories);
+
+    [[self tableView] reloadData];
+
+    //[result release];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    DBGS;
+}
+
+#pragma mark -
+#pragma mark View lifecycle {{{1
 
 - (void)viewDidLoad {
     DBGS;
     [super viewDidLoad];
+
+    [self loadCategoryIndex];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -51,7 +116,7 @@
 
 
 #pragma mark -
-#pragma mark Table view data source
+#pragma mark Table view data source {{{1
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
@@ -61,22 +126,29 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 5;
+    DBGS;
+    return [[self categories] count];
 }
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DBGS;
     static NSString *CellIdentifier = @"Cell";
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                       reuseIdentifier:CellIdentifier] autorelease];
     }
-    
-    // Configure the cell...
-    
+
+    NSDictionary *category = [[self categories] objectAtIndex: [indexPath row]];
+    DBG(category);
+
+    [[cell textLabel] setText: [category objectForKey: @"title"]];
+
     return cell;
 }
 
@@ -122,7 +194,7 @@
 
 
 #pragma mark -
-#pragma mark Table view delegate
+#pragma mark Table view delegate {{{1
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
@@ -135,7 +207,7 @@
 
 
 #pragma mark -
-#pragma mark Memory management
+#pragma mark Memory management {{{1
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -147,10 +219,19 @@
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+    //
+
+    [locations release];
+    locations = nil;
+
+    [categories release];
+    categories = nil;
 }
 
 
 - (void)dealloc {
+    [self setQueue: nil];
+    [self setBaseURL: nil];
     [super dealloc];
 }
 

@@ -8,7 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ASINetworkQueue.h"
+
 @interface CategoryItemViewController : UITableViewController {
+
+    ASINetworkQueue     *queue;
+    NSMutableDictionary *locations;
+    NSMutableArray      *categories;
+    NSURL               *baseURL;
 }
+
+@property (retain) ASINetworkQueue                  *queue;
+@property (retain) NSURL                            *baseURL;
+@property (retain) NSMutableArray                   *categories;
+@property (retain) NSMutableDictionary              *locations;
 
 @end
