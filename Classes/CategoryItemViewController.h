@@ -1,5 +1,5 @@
 //
-//  RootViewController.h
+//  CategoryItemViewController.h
 //  CityFever
 //
 //  Created by Stephan Eletzhofer on 15.02.11.
@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RootViewController : UITableViewController {
+
+@interface CategoryItemViewController : UITableViewController {
+
 }
 
 @end

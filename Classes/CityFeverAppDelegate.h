@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CityFeverAppDelegate : NSObject <UIApplicationDelegate> {
-    
     UIWindow *window;
     UINavigationController *navigationController;
 }

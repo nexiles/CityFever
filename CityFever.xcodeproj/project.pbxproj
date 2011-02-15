@@ -13,7 +13,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
-		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		BFBD07A4130A739400CA7941 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0791130A739400CA7941 /* ASIAuthenticationDialog.m */; };
 		BFBD07A5130A739400CA7941 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0794130A739400CA7941 /* ASIDataCompressor.m */; };
@@ -31,6 +30,10 @@
 		BFBD07D1130A759A00CA7941 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBD07D0130A759A00CA7941 /* libz.dylib */; };
 		BFBD0849130A75F400CA7941 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBD0848130A75F400CA7941 /* CFNetwork.framework */; };
 		BFBD084D130A762A00CA7941 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBD084C130A762A00CA7941 /* MobileCoreServices.framework */; };
+		BFBD0858130A77B900CA7941 /* CategoryItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0856130A77B900CA7941 /* CategoryItemViewController.m */; };
+		BFBD0859130A77B900CA7941 /* CategoryItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFBD0857130A77B900CA7941 /* CategoryItemViewController.xib */; };
+		BFBD0888130A7CD900CA7941 /* LocationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0886130A7CD900CA7941 /* LocationDetailViewController.m */; };
+		BFBD0889130A7CD900CA7941 /* LocationDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFBD0887130A7CD900CA7941 /* LocationDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,8 +45,6 @@
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* CityFever_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityFever_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* CityFever-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CityFever-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -76,6 +77,12 @@
 		BFBD07D0130A759A00CA7941 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BFBD0848130A75F400CA7941 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		BFBD084C130A762A00CA7941 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		BFBD0855130A77B900CA7941 /* CategoryItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryItemViewController.h; sourceTree = "<group>"; };
+		BFBD0856130A77B900CA7941 /* CategoryItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryItemViewController.m; sourceTree = "<group>"; };
+		BFBD0857130A77B900CA7941 /* CategoryItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CategoryItemViewController.xib; path = Classes/CategoryItemViewController.xib; sourceTree = "<group>"; };
+		BFBD0885130A7CD900CA7941 /* LocationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDetailViewController.h; sourceTree = "<group>"; };
+		BFBD0886130A7CD900CA7941 /* LocationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationDetailViewController.m; sourceTree = "<group>"; };
+		BFBD0887130A7CD900CA7941 /* LocationDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LocationDetailViewController.xib; path = Classes/LocationDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +109,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
-				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* CityFeverAppDelegate.h */,
 				1D3623250D0F684500981E51 /* CityFeverAppDelegate.m */,
+				BFBD0855130A77B900CA7941 /* CategoryItemViewController.h */,
+				BFBD0856130A77B900CA7941 /* CategoryItemViewController.m */,
+				BFBD0885130A7CD900CA7941 /* LocationDetailViewController.h */,
+				BFBD0886130A7CD900CA7941 /* LocationDetailViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -164,6 +173,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BFBD0887130A7CD900CA7941 /* LocationDetailViewController.xib */,
+				BFBD0857130A77B900CA7941 /* CategoryItemViewController.xib */,
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* CityFever-Info.plist */,
@@ -235,6 +246,8 @@
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				28F335F11007B36200424DE2 /* RootViewController.xib in Resources */,
+				BFBD0859130A77B900CA7941 /* CategoryItemViewController.xib in Resources */,
+				BFBD0889130A7CD900CA7941 /* LocationDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,7 +260,6 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* CityFeverAppDelegate.m in Sources */,
-				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
 				BFBD07A4130A739400CA7941 /* ASIAuthenticationDialog.m in Sources */,
 				BFBD07A5130A739400CA7941 /* ASIDataCompressor.m in Sources */,
 				BFBD07A6130A739400CA7941 /* ASIDataDecompressor.m in Sources */,
@@ -257,6 +269,8 @@
 				BFBD07AA130A739400CA7941 /* ASIInputStream.m in Sources */,
 				BFBD07AB130A739400CA7941 /* ASINetworkQueue.m in Sources */,
 				BFBD07B0130A740300CA7941 /* Reachability.m in Sources */,
+				BFBD0858130A77B900CA7941 /* CategoryItemViewController.m in Sources */,
+				BFBD0888130A7CD900CA7941 /* LocationDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

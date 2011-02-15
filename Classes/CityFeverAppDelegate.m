@@ -7,7 +7,7 @@
 //
 
 #import "CityFeverAppDelegate.h"
-#import "RootViewController.h"
+#import "CategoryItemViewController.h"
 
 
 @implementation CityFeverAppDelegate
