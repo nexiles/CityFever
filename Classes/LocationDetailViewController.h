@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ASIHTTPRequest.h"
 
 @interface LocationDetailViewController : UIViewController {
     IBOutlet UILabel         *locationTitle;
@@ -18,5 +18,12 @@
 }
 
 @property (retain) NSMutableDictionary *location;;
+
+@property (retain) UILabel             *locationTitle;
+@property (retain) UILabel             *locationDescription;
+@property (retain) UIImageView         *locationImage;
+
+- (void)requestFinished:(ASIHTTPRequest *)request;
+- (void)requestFailed:(ASIHTTPRequest *)request;
 
 @end

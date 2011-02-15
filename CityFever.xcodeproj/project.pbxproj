@@ -44,6 +44,7 @@
 		BFBD0918130A8E4400CA7941 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD090D130A8E4400CA7941 /* SBJsonStreamWriterState.m */; };
 		BFBD0919130A8E4400CA7941 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD090F130A8E4400CA7941 /* SBJsonTokeniser.m */; };
 		BFBD091A130A8E4400CA7941 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0911130A8E4400CA7941 /* SBJsonWriter.m */; };
+		BFBD0A58130AFC6300CA7941 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0A57130AFC6300CA7941 /* NSData+Base64.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +115,9 @@
 		BFBD090F130A8E4400CA7941 /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonTokeniser.m; path = Classes/JSON/SBJsonTokeniser.m; sourceTree = "<group>"; };
 		BFBD0910130A8E4400CA7941 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonWriter.h; path = Classes/JSON/SBJsonWriter.h; sourceTree = "<group>"; };
 		BFBD0911130A8E4400CA7941 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonWriter.m; path = Classes/JSON/SBJsonWriter.m; sourceTree = "<group>"; };
+		BFBD0A4D130AF8D700CA7941 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		BFBD0A4E130AF8D700CA7941 /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
+		BFBD0A57130AFC6300CA7941 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BFBD0A57130AFC6300CA7941 /* NSData+Base64.m */,
+				BFBD0A4D130AF8D700CA7941 /* NSData+Base64.h */,
+				BFBD0A4E130AF8D700CA7941 /* debug.h */,
 				1D3623240D0F684500981E51 /* CityFeverAppDelegate.h */,
 				1D3623250D0F684500981E51 /* CityFeverAppDelegate.m */,
 				BFBD0855130A77B900CA7941 /* CategoryItemViewController.h */,
@@ -333,6 +340,7 @@
 				BFBD0918130A8E4400CA7941 /* SBJsonStreamWriterState.m in Sources */,
 				BFBD0919130A8E4400CA7941 /* SBJsonTokeniser.m in Sources */,
 				BFBD091A130A8E4400CA7941 /* SBJsonWriter.m in Sources */,
+				BFBD0A58130AFC6300CA7941 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

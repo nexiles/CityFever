@@ -8,46 +8,68 @@
 
 #import "debug.h"
 #import "LocationDetailViewController.h"
+#import "JSON/JSON.h"
+#import "ASIHTTPRequest.h"
+
+#import "NSData+Base64.h"
 
 
 @implementation LocationDetailViewController
 
+@synthesize locationTitle;
+@synthesize locationDescription;
+@synthesize locationImage;
+
 @synthesize location;
 
 #pragma mark -
-#pragma mark initializer {{{1
+#pragma mark async loading {{{1
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    DBGS;
+    NSString       *response = [request responseString];
+    NSMutableDictionary *loc = [response JSONValue];
 
-// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization.
+    self.location = loc;
+
+    self.navigationItem.title = [[self location] objectForKey: @"title"];
+
+    // set values
+    self.locationTitle.text = [[self location] objectForKey: @"title"];
+    self.locationDescription.text = [[self location] objectForKey: @"description"];
+
+    NSMutableArray *images = [[NSMutableArray alloc] init];
+    NSArray *pictures = [[self location] objectForKey: @"pictures"];
+    for (NSDictionary *pic in pictures) {
+        NSData *imageData = [NSData dataFromBase64String: [pic objectForKey: @"image"]];
+        [images addObject: [UIImage imageWithData: imageData]];
     }
-    return self;
+
+    if ([images count]) {
+        [[self locationImage] setAnimationImages: images];
+        [[self locationImage] setAnimationDuration: 2.0*[images count]];
+        [[self locationImage] startAnimating];
+    }
+
+    //[images release];
 }
-*/
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    DBGS;
+}
 
 #pragma mark -
 #pragma mark view loading {{{1
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     DBGS;
     [super viewDidLoad];
     [[self view] setBackgroundColor: [UIColor groupTableViewBackgroundColor]];
 
-    self.navigationItem.title = @"Location";
+    self.navigationItem.title = @"Loading ...";
 }
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 #pragma mark -
 #pragma mark memory management {{{1
@@ -55,7 +77,7 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
+
     // Release any cached data, images, etc. that aren't in use.
 }
 
