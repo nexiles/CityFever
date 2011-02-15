@@ -12,6 +12,8 @@
 
 @implementation LocationDetailViewController
 
+@synthesize location;
+
 #pragma mark -
 #pragma mark initializer {{{1
 
@@ -35,6 +37,8 @@
     DBGS;
     [super viewDidLoad];
     [[self view] setBackgroundColor: [UIColor groupTableViewBackgroundColor]];
+
+    self.navigationItem.title = @"Location";
 }
 
 /*

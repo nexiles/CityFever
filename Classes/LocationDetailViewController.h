@@ -13,6 +13,10 @@
     IBOutlet UILabel         *locationTitle;
     IBOutlet UILabel         *locationDescription;
     IBOutlet UIImageView     *locationImage;
+
+    NSMutableDictionary      *location;
 }
+
+@property (retain) NSMutableDictionary *location;;
 
 @end
