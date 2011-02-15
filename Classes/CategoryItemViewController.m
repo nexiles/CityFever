@@ -23,7 +23,7 @@
 @synthesize baseURL;
 
 @synthesize categories;
-@synthesize locations;
+@synthesize locationIndex;
 
 
 #pragma mark -
@@ -73,12 +73,10 @@
 - (void)categoryIndexRequestDone:(ASIHTTPRequest *)request
 {
     DBGS;
-
     NSString *response = [request responseString];
-
     NSMutableDictionary *result = [response JSONValue];
-    self.categories = [result objectForKey:@"items"];
 
+    self.categories = [result objectForKey:@"items"];
     DBG(self.categories);
 
     // now load all location indices
@@ -92,10 +90,6 @@
                didFailSelector: @selector(requestFailed:)
                       userInfo: category];
     }
-
-    //[[self queue] go];
-
-    //[result release];
 }
 
 - (void)locationIndexRequestDone:(ASIHTTPRequest *)request
@@ -107,7 +101,7 @@
     NSMutableDictionary *result = [response JSONValue];
     NSArray                *loc = [result objectForKey:@"items"];
 
-    [[self locations] setObject: loc
+    [[self locationIndex] setObject: loc
                          forKey: [category objectForKey: @"title"]];
 
     [[self tableView] reloadData];
@@ -125,8 +119,8 @@
     DBGS;
     [super viewDidLoad];
 
-    if (!self.locations) {
-        [self setLocations: [[[NSMutableDictionary alloc] init] autorelease]];
+    if (!self.locationIndex) {
+        [self setLocationIndex: [[[NSMutableDictionary alloc] init] autorelease]];
     }
 
     if (!self.categories) {
@@ -137,6 +131,8 @@
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //
+    self.navigationItem.title = @"City Fever";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -188,7 +184,7 @@
     DBGS;
     NSDictionary *category = [[self categories] objectAtIndex: section];
     NSString     *categoryTitle = [category objectForKey: @"title"];
-    NSArray      *sectionLocations = [[self locations] objectForKey: categoryTitle];
+    NSArray      *sectionLocations = [[self locationIndex] objectForKey: categoryTitle];
     return [sectionLocations count];
 }
 
@@ -208,7 +204,7 @@
 
     NSDictionary *category = [[self categories] objectAtIndex: [indexPath section]];
     NSString     *categoryTitle = [category objectForKey: @"title"];
-    NSArray      *sectionLocations = [[self locations] objectForKey: categoryTitle];
+    NSArray      *sectionLocations = [[self locationIndex] objectForKey: categoryTitle];
     DBG(sectionLocations);
 
     NSDictionary *location = [sectionLocations objectAtIndex: [indexPath row]];
@@ -289,8 +285,8 @@
     // For example: self.myOutlet = nil;
     //
 
-    [locations release];
-    locations = nil;
+    [locationIndex release];
+    locationIndex = nil;
 
     [categories release];
     categories = nil;

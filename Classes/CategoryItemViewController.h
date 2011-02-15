@@ -13,7 +13,7 @@
 @interface CategoryItemViewController : UITableViewController {
 
     ASINetworkQueue     *queue;
-    NSMutableDictionary *locations;
+    NSMutableDictionary *locationIndex;
     NSMutableArray      *categories;
     NSURL               *baseURL;
 }
@@ -21,6 +21,6 @@
 @property (retain) ASINetworkQueue                  *queue;
 @property (retain) NSURL                            *baseURL;
 @property (retain) NSMutableArray                   *categories;
-@property (retain) NSMutableDictionary              *locations;
+@property (retain) NSMutableDictionary              *locationIndex;
 
 @end
