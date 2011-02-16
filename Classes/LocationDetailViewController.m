@@ -54,7 +54,7 @@
         self.locationTitle.text = self.location.title;
         self.locationDescription.text = self.location.description;
 
-        NSMutableArray *images = [[NSArray alloc] init];
+        NSMutableArray *images = [[NSMutableArray alloc] init];
         if ([[[self location] imageData] count]) {
             for (NSData *data in self.location.imageData)
                 [images addObject: [UIImage imageWithData: data]];

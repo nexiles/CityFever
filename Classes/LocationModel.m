@@ -32,7 +32,6 @@
     self = [super init];
     if (self) {
         if (json) {
-            DBG(json);
             NSDictionary *loc = [json JSONValue];
 
             self.uid = [loc objectForKey: @"uid"];
