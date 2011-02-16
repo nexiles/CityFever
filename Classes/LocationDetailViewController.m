@@ -62,6 +62,7 @@
             [[self locationImage] setAnimationDuration: 2.0*[images count]];
             [[self locationImage] startAnimating];
         }
+        [images release];
     }
 }
 
