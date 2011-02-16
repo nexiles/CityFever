@@ -23,6 +23,32 @@
 		BF796B85130BC69200846EAE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF796B84130BC69200846EAE /* libz.dylib */; };
 		BF796B9F130BC79900846EAE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF796B9E130BC79900846EAE /* SystemConfiguration.framework */; };
 		BF796BC9130BDC5F00846EAE /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BF796BC8130BDC5F00846EAE /* GTMLogger.m */; };
+		BF796BF8130BE13600846EAE /* ModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF796BF7130BE13600846EAE /* ModelTests.m */; };
+		BF796BFB130BE1AF00846EAE /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF796BFA130BE1AF00846EAE /* LocationModel.m */; };
+		BF796C24130BE92E00846EAE /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF796BFA130BE1AF00846EAE /* LocationModel.m */; };
+		BF796CFD130C121C00846EAE /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BF796BC8130BDC5F00846EAE /* GTMLogger.m */; };
+		BF796D00130C121C00846EAE /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0901130A8E4400CA7941 /* NSObject+JSON.m */; };
+		BF796D02130C121C00846EAE /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0903130A8E4400CA7941 /* SBJsonParser.m */; };
+		BF796D04130C121C00846EAE /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0905130A8E4400CA7941 /* SBJsonStreamParser.m */; };
+		BF796D06130C121C00846EAE /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0907130A8E4400CA7941 /* SBJsonStreamParserAdapter.m */; };
+		BF796D08130C121C00846EAE /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0909130A8E4400CA7941 /* SBJsonStreamParserState.m */; };
+		BF796D0A130C121C00846EAE /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD090B130A8E4400CA7941 /* SBJsonStreamWriter.m */; };
+		BF796D0C130C121C00846EAE /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD090D130A8E4400CA7941 /* SBJsonStreamWriterState.m */; };
+		BF796D0E130C121C00846EAE /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD090F130A8E4400CA7941 /* SBJsonTokeniser.m */; };
+		BF796D10130C121C00846EAE /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0911130A8E4400CA7941 /* SBJsonWriter.m */; };
+		BF796D12130C121C00846EAE /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0791130A739400CA7941 /* ASIAuthenticationDialog.m */; };
+		BF796D15130C121C00846EAE /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0794130A739400CA7941 /* ASIDataCompressor.m */; };
+		BF796D17130C121C00846EAE /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0796130A739400CA7941 /* ASIDataDecompressor.m */; };
+		BF796D19130C121C00846EAE /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0798130A739400CA7941 /* ASIDownloadCache.m */; };
+		BF796D1B130C121C00846EAE /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD079A130A739400CA7941 /* ASIFormDataRequest.m */; };
+		BF796D1D130C121C00846EAE /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD079C130A739400CA7941 /* ASIHTTPRequest.m */; };
+		BF796D20130C121C00846EAE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD07AF130A740300CA7941 /* Reachability.m */; };
+		BF796D23130C121C00846EAE /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD07A0130A739400CA7941 /* ASIInputStream.m */; };
+		BF796D25130C121C00846EAE /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD07A2130A739400CA7941 /* ASINetworkQueue.m */; };
+		BF796D91130C13CC00846EAE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF796B9E130BC79900846EAE /* SystemConfiguration.framework */; };
+		BF796DA8130C142000846EAE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF796B84130BC69200846EAE /* libz.dylib */; };
+		BF796DA9130C142000846EAE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBD084C130A762A00CA7941 /* MobileCoreServices.framework */; };
+		BF796DCB130C148300846EAE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBD0848130A75F400CA7941 /* CFNetwork.framework */; };
 		BFBD07A4130A739400CA7941 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0791130A739400CA7941 /* ASIAuthenticationDialog.m */; };
 		BFBD07A5130A739400CA7941 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0794130A739400CA7941 /* ASIDataCompressor.m */; };
 		BFBD07A6130A739400CA7941 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0796130A739400CA7941 /* ASIDataDecompressor.m */; };
@@ -85,6 +111,9 @@
 		BF796BC7130BDC5F00846EAE /* GTMLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMLogger.h; sourceTree = "<group>"; };
 		BF796BC8130BDC5F00846EAE /* GTMLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMLogger.m; sourceTree = "<group>"; };
 		BF796BCC130BDCA200846EAE /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		BF796BF7130BE13600846EAE /* ModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTests.m; sourceTree = "<group>"; };
+		BF796BF9130BE1AF00846EAE /* LocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationModel.h; sourceTree = "<group>"; };
+		BF796BFA130BE1AF00846EAE /* LocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationModel.m; sourceTree = "<group>"; };
 		BFBD0790130A739400CA7941 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = Classes/ASIHTTP/ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		BFBD0791130A739400CA7941 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = Classes/ASIHTTP/ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		BFBD0792130A739400CA7941 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = Classes/ASIHTTP/ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -160,10 +189,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF796DA8130C142000846EAE /* libz.dylib in Frameworks */,
+				BF796DA9130C142000846EAE /* MobileCoreServices.framework in Frameworks */,
 				BF796B4D130BC1AF00846EAE /* GHUnit.framework in Frameworks */,
 				BF796B6B130BC43F00846EAE /* CoreGraphics.framework in Frameworks */,
 				BF796B6C130BC44500846EAE /* UIKit.framework in Frameworks */,
 				BF796B6D130BC45000846EAE /* Foundation.framework in Frameworks */,
+				BF796D91130C13CC00846EAE /* SystemConfiguration.framework in Frameworks */,
+				BF796DCB130C148300846EAE /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +217,8 @@
 				BFBD0886130A7CD900CA7941 /* LocationDetailViewController.m */,
 				BFBD089F130A85DB00CA7941 /* Location.h */,
 				BFBD08A0130A85DB00CA7941 /* Location.m */,
+				BF796BF9130BE1AF00846EAE /* LocationModel.h */,
+				BF796BFA130BE1AF00846EAE /* LocationModel.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -207,8 +242,6 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				BF796B48130BC10500846EAE /* CityFeverTests-Info.plist */,
-				BF796B84130BC69200846EAE /* libz.dylib */,
-				BF796B9E130BC79900846EAE /* SystemConfiguration.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -284,6 +317,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BF796B9E130BC79900846EAE /* SystemConfiguration.framework */,
+				BF796B84130BC69200846EAE /* libz.dylib */,
 				BF796B4C130BC1AF00846EAE /* GHUnit.framework */,
 				BFBD084C130A762A00CA7941 /* MobileCoreServices.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
@@ -298,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				BF796B72130BC5C700846EAE /* SetupTests.m */,
+				BF796BF7130BE13600846EAE /* ModelTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -417,6 +453,7 @@
 				BFBD091A130A8E4400CA7941 /* SBJsonWriter.m in Sources */,
 				BFBD0A58130AFC6300CA7941 /* NSData+Base64.m in Sources */,
 				BF796BC9130BDC5F00846EAE /* GTMLogger.m in Sources */,
+				BF796BFB130BE1AF00846EAE /* LocationModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,8 +461,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF796CFD130C121C00846EAE /* GTMLogger.m in Sources */,
+				BF796D00130C121C00846EAE /* NSObject+JSON.m in Sources */,
+				BF796D02130C121C00846EAE /* SBJsonParser.m in Sources */,
+				BF796D04130C121C00846EAE /* SBJsonStreamParser.m in Sources */,
+				BF796D06130C121C00846EAE /* SBJsonStreamParserAdapter.m in Sources */,
+				BF796D08130C121C00846EAE /* SBJsonStreamParserState.m in Sources */,
+				BF796D0A130C121C00846EAE /* SBJsonStreamWriter.m in Sources */,
+				BF796D0C130C121C00846EAE /* SBJsonStreamWriterState.m in Sources */,
+				BF796D0E130C121C00846EAE /* SBJsonTokeniser.m in Sources */,
+				BF796D10130C121C00846EAE /* SBJsonWriter.m in Sources */,
+				BF796D12130C121C00846EAE /* ASIAuthenticationDialog.m in Sources */,
+				BF796D15130C121C00846EAE /* ASIDataCompressor.m in Sources */,
+				BF796D17130C121C00846EAE /* ASIDataDecompressor.m in Sources */,
+				BF796D19130C121C00846EAE /* ASIDownloadCache.m in Sources */,
+				BF796D1B130C121C00846EAE /* ASIFormDataRequest.m in Sources */,
+				BF796D1D130C121C00846EAE /* ASIHTTPRequest.m in Sources */,
+				BF796D20130C121C00846EAE /* Reachability.m in Sources */,
+				BF796D23130C121C00846EAE /* ASIInputStream.m in Sources */,
+				BF796D25130C121C00846EAE /* ASINetworkQueue.m in Sources */,
+				BF796C24130BE92E00846EAE /* LocationModel.m in Sources */,
 				BF796B71130BC59200846EAE /* GHUnitIOSTestMain.m in Sources */,
 				BF796B73130BC5C700846EAE /* SetupTests.m in Sources */,
+				BF796BF8130BE13600846EAE /* ModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,7 +531,7 @@
 		BF796B49130BC10500846EAE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -484,26 +542,25 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CityFeverTests_Prefix.pch;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Classes";
 				INFOPLIST_FILE = "CityFeverTests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CityFeverTests;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Classes";
 			};
 			name = Debug;
 		};
 		BF796B4A130BC10500846EAE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -514,19 +571,18 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CityFeverTests_Prefix.pch;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Classes";
 				INFOPLIST_FILE = "CityFeverTests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CityFeverTests;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Classes";
 				ZERO_LINK = NO;
 			};
 			name = Release;
