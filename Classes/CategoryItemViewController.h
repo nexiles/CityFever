@@ -14,7 +14,6 @@
 
     ASINetworkQueue     *queue;
     NSMutableDictionary *locationIndex;
-    //NSMutableDictionary *locations;
     NSMutableArray      *categories;
     NSURL               *baseURL;
 }
@@ -23,6 +22,5 @@
 @property (retain) NSURL                            *baseURL;
 @property (retain) NSMutableArray                   *categories;
 @property (retain) NSMutableDictionary              *locationIndex;
-//@property (retain) NSMutableDictionary              *locations;
 
 @end
