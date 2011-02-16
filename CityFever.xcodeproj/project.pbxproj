@@ -22,6 +22,7 @@
 		BF796B73130BC5C700846EAE /* SetupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF796B72130BC5C700846EAE /* SetupTests.m */; };
 		BF796B85130BC69200846EAE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF796B84130BC69200846EAE /* libz.dylib */; };
 		BF796B9F130BC79900846EAE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF796B9E130BC79900846EAE /* SystemConfiguration.framework */; };
+		BF796BC9130BDC5F00846EAE /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BF796BC8130BDC5F00846EAE /* GTMLogger.m */; };
 		BFBD07A4130A739400CA7941 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0791130A739400CA7941 /* ASIAuthenticationDialog.m */; };
 		BFBD07A5130A739400CA7941 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0794130A739400CA7941 /* ASIDataCompressor.m */; };
 		BFBD07A6130A739400CA7941 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBD0796130A739400CA7941 /* ASIDataDecompressor.m */; };
@@ -80,6 +81,10 @@
 		BF796B72130BC5C700846EAE /* SetupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupTests.m; sourceTree = "<group>"; };
 		BF796B84130BC69200846EAE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF796B9E130BC79900846EAE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		BF796BC6130BDC5F00846EAE /* GTMGarbageCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMGarbageCollection.h; sourceTree = "<group>"; };
+		BF796BC7130BDC5F00846EAE /* GTMLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMLogger.h; sourceTree = "<group>"; };
+		BF796BC8130BDC5F00846EAE /* GTMLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMLogger.m; sourceTree = "<group>"; };
+		BF796BCC130BDCA200846EAE /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		BFBD0790130A739400CA7941 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = Classes/ASIHTTP/ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		BFBD0791130A739400CA7941 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = Classes/ASIHTTP/ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		BFBD0792130A739400CA7941 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = Classes/ASIHTTP/ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -211,6 +216,10 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				BF796BCC130BDCA200846EAE /* GTMDefines.h */,
+				BF796BC6130BDC5F00846EAE /* GTMGarbageCollection.h */,
+				BF796BC7130BDC5F00846EAE /* GTMLogger.h */,
+				BF796BC8130BDC5F00846EAE /* GTMLogger.m */,
 				BF796B70130BC59200846EAE /* GHUnitIOSTestMain.m */,
 				BF796B65130BC23300846EAE /* CityFeverTests_Prefix.pch */,
 				BFBD08FF130A8E4400CA7941 /* JSON.h */,
@@ -407,6 +416,7 @@
 				BFBD0919130A8E4400CA7941 /* SBJsonTokeniser.m in Sources */,
 				BFBD091A130A8E4400CA7941 /* SBJsonWriter.m in Sources */,
 				BFBD0A58130AFC6300CA7941 /* NSData+Base64.m in Sources */,
+				BF796BC9130BDC5F00846EAE /* GTMLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
