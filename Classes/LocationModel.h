@@ -23,9 +23,9 @@
 @property (nonatomic,retain) NSString         *path;
 @property (nonatomic,retain) NSString         *title;
 @property (nonatomic,retain) NSString         *description;
-@property (nonatomic,retain) NSArray        *imageData;
+@property (nonatomic,retain) NSArray          *imageData;
 
-+ (id)initFromJSON:(NSString *)json;
-- (id)initFromJSON:(NSString *)json;
++ (id)initWithJSON:(NSString *)json;
+- (id)initWithJSON:(NSString *)json;
 
 @end

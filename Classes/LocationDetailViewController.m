@@ -7,11 +7,12 @@
 //
 
 #import "debug.h"
-#import "LocationDetailViewController.h"
 #import "JSON/JSON.h"
 #import "ASIHTTPRequest.h"
-
 #import "NSData+Base64.h"
+
+#import "LocationDetailViewController.h"
+#import "LocationModel.h"
 
 
 @implementation LocationDetailViewController
@@ -28,30 +29,12 @@
 {
     DBGS;
     NSString       *response = [request responseString];
-    NSMutableDictionary *loc = [response JSONValue];
 
-    self.location = loc;
+    // initialize location model
+    self.location = [LocationModel initWithJSON: response];
 
-    self.navigationItem.title = [[self location] objectForKey: @"title"];
+    [self update];
 
-    // set values
-    self.locationTitle.text = [[self location] objectForKey: @"title"];
-    self.locationDescription.text = [[self location] objectForKey: @"description"];
-
-    NSMutableArray *images = [[NSMutableArray alloc] init];
-    NSArray *pictures = [[self location] objectForKey: @"pictures"];
-    for (NSDictionary *pic in pictures) {
-        NSData *imageData = [NSData dataFromBase64String: [pic objectForKey: @"image"]];
-        [images addObject: [UIImage imageWithData: imageData]];
-    }
-
-    if ([images count]) {
-        [[self locationImage] setAnimationImages: images];
-        [[self locationImage] setAnimationDuration: 2.0*[images count]];
-        [[self locationImage] startAnimating];
-    }
-
-    //[images release];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -61,6 +44,26 @@
 
 #pragma mark -
 #pragma mark view loading {{{1
+
+- (void)update
+{
+    if (self.location) {
+        self.navigationItem.title = self.location.title;
+
+        // set values
+        self.locationTitle.text = self.location.title;
+        self.locationDescription.text = self.location.description;
+
+        NSMutableArray *images = [[NSArray alloc] init];
+        if ([[[self location] imageData] count]) {
+            for (NSData *data in self.location.imageData)
+                [images addObject: [UIImage imageWithData: data]];
+            [[self locationImage] setAnimationImages: images];
+            [[self locationImage] setAnimationDuration: 2.0*[images count]];
+            [[self locationImage] startAnimating];
+        }
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -95,6 +98,7 @@
 
 
 - (void)dealloc {
+    self.location = nil;
     [super dealloc];
 }
 
