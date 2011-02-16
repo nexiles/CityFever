@@ -67,7 +67,7 @@
 					<object class="IBUIImageView" id="228780493">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 49}, {280, 186}}</string>
+						<string key="NSFrame">{{20, 107}, {280, 186}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -75,7 +75,7 @@
 					<object class="IBUILabel" id="7010741">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 259}, {150, 21}}</string>
+						<string key="NSFrame">{{20, 49}, {280, 50}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -89,7 +89,8 @@
 						</object>
 						<reference key="IBUIHighlightedColor" ref="773469180"/>
 						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">8</float>
+						<float key="IBUIMinimumFontSize">10</float>
+						<int key="IBUINumberOfLines">3</int>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
@@ -155,8 +156,8 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="7010741"/>
 							<reference ref="842053744"/>
+							<reference ref="7010741"/>
 							<reference ref="228780493"/>
 						</object>
 						<reference key="parent" ref="0"/>
@@ -216,11 +217,11 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAw2kAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAw4YAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAw5SAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAwmQAAA</bytes>
 					</object>
 				</object>
 			</object>
@@ -290,6 +291,13 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/LocationDetailViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/JSON/SBJsonStreamWriter.h</string>
 					</object>
 				</object>
 			</object>
