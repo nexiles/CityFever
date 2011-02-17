@@ -84,7 +84,7 @@
 			<key>Title</key>
 			<string>Slideshow</string>
 			<key>Key</key>
-			<string>enabled_preference</string>
+			<string>slideshow</string>
 			<key>DefaultValue</key>
 			<true/>
 		</dict>
@@ -92,9 +92,9 @@
 			<key>Type</key>
 			<string>PSSliderSpecifier</string>
 			<key>Key</key>
-			<string>Duration</string>
+			<string>duration</string>
 			<key>DefaultValue</key>
-			<real>2</real>
+			<integer>2</integer>
 			<key>MinimumValue</key>
 			<real>0</real>
 			<key>MaximumValue</key>

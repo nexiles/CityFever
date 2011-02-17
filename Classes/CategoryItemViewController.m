@@ -52,7 +52,12 @@
     DBGS;
 
     if (!baseURL) {
-        [self setBaseURL: [NSURL URLWithString: BFEVER_URL]];
+        NSString *base_url = [[NSUserDefaults standardUserDefaults] stringForKey:@"base_url"];
+        if (!base_url) {
+            NSLog(@"ugh, can't get the 'base_url' defaults ... using hard-coded value.");
+            base_url = BFEVER_URL;
+        }
+        [self setBaseURL: [NSURL URLWithString: base_url]];
     }
 
     if (![self queue]) {

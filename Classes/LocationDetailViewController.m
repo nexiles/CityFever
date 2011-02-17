@@ -54,13 +54,20 @@
         self.locationTitle.text = self.location.title;
         self.locationDescription.text = self.location.description;
 
+        BOOL do_animation = [[NSUserDefaults standardUserDefaults] boolForKey:@"slideshow"];
+        float duration    = [[NSUserDefaults standardUserDefaults] floatForKey:@"duration"];
+
+        NSLog(@"duration=%3.3f", duration);
+
         NSMutableArray *images = [[NSMutableArray alloc] init];
         if ([[[self location] imageData] count]) {
             for (NSData *data in self.location.imageData)
                 [images addObject: [UIImage imageWithData: data]];
             [[self locationImage] setAnimationImages: images];
-            [[self locationImage] setAnimationDuration: 2.0*[images count]];
-            [[self locationImage] startAnimating];
+            [[self locationImage] setAnimationDuration: duration*[images count]];
+            if (do_animation) {
+                [[self locationImage] startAnimating];
+            }
         }
         [images release];
     }
