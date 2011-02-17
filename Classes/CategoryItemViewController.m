@@ -43,10 +43,6 @@
                    userInfo:(NSDictionary *)info
                    delegate:(id)delegate
 {
-    //DBGS;
-    DBG(url);
-    //DBG(info);
-
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setDelegate: delegate];
     [request setDidFinishSelector: finish];
@@ -70,7 +66,6 @@
 
     NSURL *url = [NSURL URLWithString:@"/en/index.json"
                         relativeToURL:baseURL];
-    DBG(url);
 
     [self       enqueueURL: url
          didFinishSelector: @selector(categoryIndexRequestDone:)
@@ -86,7 +81,6 @@
     NSMutableDictionary *result = [response JSONValue];
 
     self.categories = [result objectForKey:@"items"];
-    DBG(self.categories);
 
     // now load all location indices
     for (NSDictionary *category in [self categories]) {
@@ -173,15 +167,8 @@
         [self setCategories: [[[NSMutableArray alloc] init] autorelease]];
     }
 
-    //if (!self.locations) {
-        //[self setLocations: [[[NSMutableDictionary alloc] init] autorelease]];
-    //}
-
     [self loadCategoryIndex];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    //
     self.navigationItem.title = @"City Fever";
 }
 
@@ -196,7 +183,6 @@
 
 - (void)viewDidUnload {
     DBGS;
-    //[self setLocations: nil];
     [self setLocationIndex: nil];
     [self setCategories: nil];
 }
@@ -210,6 +196,7 @@
     DBGS;
     [super viewDidDisappear:animated];
 }
+
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -229,17 +216,14 @@
     NSDictionary *category = [[self categories] objectAtIndex: [indexPath section]];
     NSString     *categoryTitle = [category objectForKey: @"title"];
     NSArray      *sectionLocations = [[self locationIndex] objectForKey: categoryTitle];
-    //DBG(sectionLocations);
 
     NSDictionary *location = [sectionLocations objectAtIndex: [indexPath row]];
-    //DBG(location);
 
     return location;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return [[self categories] count];
 }
 
@@ -277,69 +261,22 @@
     }
 
     NSDictionary *location = [self locationForIndexPath: indexPath];
-    //DBG(location);
 
-    // XXX: caching!
     NSString *thumb = [location objectForKey:@"thumb"];
     NSData *thumbData = [[self thumbCache] objectForKey: thumb];
     if (thumbData) {
-        NSLog(@"CACHE HIT: %@", thumb);
+        // cache hit
         UIImage *img = [UIImage imageWithData: thumbData];
         [[cell imageView] setImage: img];
     } else {
-        NSLog(@"CACHE MISS: %@", thumb);
+        // cache miss -- enqueue request to load image data
         [self fetchThumbImage: thumb];
     }
 
     [[cell textLabel] setText: [location objectForKey: @"title"]];
     [[cell detailTextLabel] setText: [location objectForKey: @"description"]];
-
-    //[thumbData release];
-    //[img release];
-
     return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark -
 #pragma mark Table view delegate {{{1
@@ -384,8 +321,6 @@
     [super didReceiveMemoryWarning];
 }
 
-
-
 - (void)dealloc {
     DBGS;
     [self setThumbCache: nil];
@@ -394,6 +329,4 @@
     [super dealloc];
 }
 
-
 @end
-
