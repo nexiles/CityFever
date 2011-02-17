@@ -98,6 +98,8 @@
                       userInfo: category
                       delegate: self];
     }
+
+    [[self tableView] reloadData];
 }
 
 - (void)locationIndexRequestDone:(ASIHTTPRequest *)request
