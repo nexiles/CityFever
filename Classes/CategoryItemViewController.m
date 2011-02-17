@@ -241,8 +241,18 @@
     NSDictionary *location = [self locationForIndexPath: indexPath];
     //DBG(location);
 
+    // XXX: caching!
+    NSData *thumbData = [NSData dataWithContentsOfURL:
+                                 [NSURL URLWithString:[location objectForKey:@"thumb"]
+                                        relativeToURL:baseURL]];
+    UIImage *img = [UIImage imageWithData: thumbData];
+
     [[cell textLabel] setText: [location objectForKey: @"title"]];
     [[cell detailTextLabel] setText: [location objectForKey: @"description"]];
+    [[cell imageView] setImage: img];
+
+    //[thumbData release];
+    //[img release];
 
     return cell;
 }
