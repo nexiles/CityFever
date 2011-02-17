@@ -10,6 +10,15 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Icon.png</string>
+		<string>Icon@2x.png</string>
+		<string>Icon-small.png</string>
+		<string>Icon-small@2x.png</string>
+	</array>
+	<key>CFBundleShortVersionString</key>
+	<string></string>
 	<key>CFBundleIdentifier</key>
 	<string>com.nexiles.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
