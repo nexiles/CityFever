@@ -16,6 +16,8 @@
     NSMutableDictionary *locationIndex;
     NSMutableArray      *categories;
     NSURL               *baseURL;
+
+    NSMutableDictionary *thumbCache;
 }
 
 @property (retain) ASINetworkQueue                  *queue;

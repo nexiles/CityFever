@@ -115,10 +115,41 @@
     [[self tableView] reloadData];
 }
 
+- (void)fetchThumbImage:(NSString *)path
+{
+    DBG(path);
+
+    NSURL *url = [NSURL URLWithString:path
+                        relativeToURL:baseURL];
+    NSDictionary *info = [NSDictionary dictionaryWithObject:path forKey:@"path"];
+
+    [self       enqueueURL: url
+         didFinishSelector: @selector(thumbFetchFinished:)
+           didFailSelector: @selector(requestFailed:)
+                  userInfo: nil
+                  delegate: self];
+
+    [info release];
+}
+
+- (void)thumbFetchFinished:(ASIHTTPRequest *)request
+{
+    DBGS;
+    NSDictionary   *info = [request userInfo];
+    NSData         *data = [[request responseString] dataUsingEncoding:NSUTF8StringEncoding];
+
+    @synchronized(self) {
+        [[self cache] setObject: data
+                         forKey: [info objectForKey:@"path"]];
+    }
+}
+
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     DBGS;
 }
+
+
 
 #pragma mark -
 #pragma mark View lifecycle {{{1
@@ -242,14 +273,17 @@
     //DBG(location);
 
     // XXX: caching!
-    NSData *thumbData = [NSData dataWithContentsOfURL:
-                                 [NSURL URLWithString:[location objectForKey:@"thumb"]
-                                        relativeToURL:baseURL]];
-    UIImage *img = [UIImage imageWithData: thumbData];
+    NSString *thumb = [location objectForKey:@"thumb"];
+    NSData *thumbData = [[self thumbCache] objectForKey: thumb];
+    if (thumbData) {
+        UIImage *img = [UIImage imageWithData: thumbData];
+        [[cell imageView] setImage: img];
+    } else {
+        [self fetchThumbImage: thumb];
+    }
 
     [[cell textLabel] setText: [location objectForKey: @"title"]];
     [[cell detailTextLabel] setText: [location objectForKey: @"description"]];
-    [[cell imageView] setImage: img];
 
     //[thumbData release];
     //[img release];
