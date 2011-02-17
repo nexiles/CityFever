@@ -10,15 +10,21 @@
 #import "CityFeverAppDelegate.h"
 #import "CategoryItemViewController.h"
 
+#import "ASIDownloadCache.h"
+#import "ASIHTTPRequest.h"
+
 
 @implementation CityFeverAppDelegate
 
 @synthesize window;
 @synthesize navigationController;
+@synthesize queue;
 
 + (void)initialize
 {
     DBGS;
+
+    //initialize NSUserDefaults
     NSString *path = [[NSBundle mainBundle] bundlePath];
     NSString *pListPath = [path stringByAppendingPathComponent: @"Settings.bundle/Root.plist"];
     NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile: pListPath];
@@ -34,7 +40,6 @@
                          forKey:key];
         }
     }
-
     [[NSUserDefaults standardUserDefaults] registerDefaults: defaults];
 }
 
@@ -44,7 +49,19 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     DBGS;
-    // Override point for customization after application launch.
+    //initialize network queue
+    queue = [[ASINetworkQueue alloc] init];
+    [queue setShouldCancelAllRequestsOnFailure:NO];
+    [queue go];
+
+    //initialize HTTP Cache
+    [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
+    [[ASIDownloadCache sharedCache]
+        setDefaultCachePolicy:ASIAskServerIfModifiedCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
+
+    //Bandwidth throttling
+    [ASIHTTPRequest setShouldThrottleBandwidthForWWAN:YES];
+    [ASIHTTPRequest throttleBandwidthForWWANUsingLimit:14800];
 
     // Add the navigation controller's view to the window and display.
     [self.window addSubview:navigationController.view];
@@ -115,6 +132,9 @@
 
 
 - (void)dealloc {
+    // XXX: maybe cancel all running requests?
+    [queue release];
+
     [navigationController release];
     [window release];
     [super dealloc];

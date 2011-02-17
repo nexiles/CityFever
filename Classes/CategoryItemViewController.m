@@ -7,6 +7,7 @@
 //
 
 #import "debug.h"
+#import "CityFeverAppDelegate.h"
 #import "CategoryItemViewController.h"
 #import "LocationDetailViewController.h"
 
@@ -19,7 +20,6 @@
 
 #define BFEVER_URL @"http://192.168.1.10:28001"
 
-@synthesize queue;
 @synthesize baseURL;
 
 @synthesize thumbCache;
@@ -29,6 +29,13 @@
 
 #pragma mark -
 #pragma mark network code {{{1
+
+- (ASINetworkQueue *)queue
+{
+    CityFeverAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+
+    return [delegate queue];
+}
 
 - (void)         enqueueURL:(NSURL *)url
           didFinishSelector:(SEL)finish
@@ -61,10 +68,6 @@
         [self setBaseURL: [NSURL URLWithString: base_url]];
     }
 
-    if (![self queue]) {
-        [self setQueue:[[[ASINetworkQueue alloc] init] autorelease]];
-    }
-
     NSURL *url = [NSURL URLWithString:@"/en/index.json"
                         relativeToURL:baseURL];
     DBG(url);
@@ -74,8 +77,6 @@
            didFailSelector: @selector(requestFailed:)
                   userInfo: nil
                   delegate: self];
-
-    [[self queue] go];
 }
 
 - (void)categoryIndexRequestDone:(ASIHTTPRequest *)request
@@ -388,7 +389,6 @@
 - (void)dealloc {
     DBGS;
     [self setThumbCache: nil];
-    [self setQueue: nil];
     [self setBaseURL: nil];
 
     [super dealloc];
