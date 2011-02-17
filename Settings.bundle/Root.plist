@@ -10,15 +10,15 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Group</string>
+			<string>Account Settings</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Name</string>
+			<string>Login</string>
 			<key>Key</key>
-			<string>name_preference</string>
+			<string>login</string>
 			<key>DefaultValue</key>
 			<string></string>
 			<key>IsSecure</key>
@@ -32,9 +32,57 @@
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Password</string>
+			<key>Key</key>
+			<string>password</string>
+			<key>DefaultValue</key>
+			<string></string>
+			<key>IsSecure</key>
+			<true/>
+			<key>KeyboardType</key>
+			<string>Alphabet</string>
+			<key>AutocapitalizationType</key>
+			<string>None</string>
+			<key>AutocorrectionType</key>
+			<string>No</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>City Fever</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>URL</string>
+			<key>Key</key>
+			<string>base_url</string>
+			<key>DefaultValue</key>
+			<string>http://192.168.1.10:28001</string>
+			<key>IsSecure</key>
+			<false/>
+			<key>KeyboardType</key>
+			<string>Alphabet</string>
+			<key>AutocapitalizationType</key>
+			<string>None</string>
+			<key>AutocorrectionType</key>
+			<string>No</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>General settings</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Enabled</string>
+			<string>Slideshow</string>
 			<key>Key</key>
 			<string>enabled_preference</string>
 			<key>DefaultValue</key>
@@ -44,13 +92,13 @@
 			<key>Type</key>
 			<string>PSSliderSpecifier</string>
 			<key>Key</key>
-			<string>slider_preference</string>
+			<string>Duration</string>
 			<key>DefaultValue</key>
-			<real>0.5</real>
+			<real>2</real>
 			<key>MinimumValue</key>
-			<integer>0</integer>
+			<real>0</real>
 			<key>MaximumValue</key>
-			<integer>1</integer>
+			<integer>5</integer>
 			<key>MinimumValueImage</key>
 			<string></string>
 			<key>MaximumValueImage</key>
