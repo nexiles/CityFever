@@ -24,5 +24,6 @@
 @property (retain) NSURL                            *baseURL;
 @property (retain) NSMutableArray                   *categories;
 @property (retain) NSMutableDictionary              *locationIndex;
+@property (retain) NSMutableDictionary              *thumbCache;
 
 @end

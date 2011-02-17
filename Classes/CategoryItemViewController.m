@@ -22,6 +22,7 @@
 @synthesize queue;
 @synthesize baseURL;
 
+@synthesize thumbCache;
 @synthesize categories;
 @synthesize locationIndex;
 
@@ -128,22 +129,21 @@
     [self       enqueueURL: url
          didFinishSelector: @selector(thumbFetchFinished:)
            didFailSelector: @selector(requestFailed:)
-                  userInfo: nil
+                  userInfo: info
                   delegate: self];
-
-    [info release];
 }
 
 - (void)thumbFetchFinished:(ASIHTTPRequest *)request
 {
     DBGS;
     NSDictionary   *info = [request userInfo];
-    NSData         *data = [[request responseString] dataUsingEncoding:NSUTF8StringEncoding];
 
     @synchronized(self) {
-        [[self cache] setObject: data
+        [[self thumbCache] setObject: [request responseData]
                          forKey: [info objectForKey:@"path"]];
     }
+
+    [[self tableView] reloadData];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -159,6 +159,10 @@
 - (void)viewDidLoad {
     DBGS;
     [super viewDidLoad];
+
+    if (!self.thumbCache) {
+        [self setThumbCache: [[[NSMutableDictionary alloc] init] autorelease]];
+    }
 
     if (!self.locationIndex) {
         [self setLocationIndex: [[[NSMutableDictionary alloc] init] autorelease]];
@@ -278,9 +282,11 @@
     NSString *thumb = [location objectForKey:@"thumb"];
     NSData *thumbData = [[self thumbCache] objectForKey: thumb];
     if (thumbData) {
+        NSLog(@"CACHE HIT: %@", thumb);
         UIImage *img = [UIImage imageWithData: thumbData];
         [[cell imageView] setImage: img];
     } else {
+        NSLog(@"CACHE MISS: %@", thumb);
         [self fetchThumbImage: thumb];
     }
 
@@ -381,8 +387,10 @@
 
 - (void)dealloc {
     DBGS;
+    [self setThumbCache: nil];
     [self setQueue: nil];
     [self setBaseURL: nil];
+
     [super dealloc];
 }
 
