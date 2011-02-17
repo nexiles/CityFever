@@ -16,6 +16,27 @@
 @synthesize window;
 @synthesize navigationController;
 
++ (void)initialize
+{
+    DBGS;
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSString *pListPath = [path stringByAppendingPathComponent: @"Settings.bundle/Root.plist"];
+    NSDictionary *pList = [NSDictionary dictionaryWithContentsOfFile: pListPath];
+
+    NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
+
+    NSMutableArray *prefs = [pList objectForKey: @"PreferenceSpecifiers"];
+    for (NSDictionary *dict in prefs) {
+        NSString *key = [dict objectForKey: @"Key"];
+        if (key) {
+            DBG(key);
+            [defaults setObject:[dict objectForKey:@"DefaultValue"]
+                         forKey:key];
+        }
+    }
+
+    [[NSUserDefaults standardUserDefaults] registerDefaults: defaults];
+}
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -98,6 +119,7 @@
     [window release];
     [super dealloc];
 }
+
 
 
 @end
