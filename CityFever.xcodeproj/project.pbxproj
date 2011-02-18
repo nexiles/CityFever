@@ -22,6 +22,8 @@
 		A8126071130D678900D6BA2D /* Icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A8126069130D678900D6BA2D /* Icon-small@2x.png */; };
 		A8126072130D678900D6BA2D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A812606A130D678900D6BA2D /* Icon.png */; };
 		A8126073130D678900D6BA2D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A812606B130D678900D6BA2D /* Icon@2x.png */; };
+		BF63E8A3130E83F500B44EDF /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BF63E8A2130E83F500B44EDF /* ImageCache.m */; };
+		BF63E8A4130E83F500B44EDF /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BF63E8A2130E83F500B44EDF /* ImageCache.m */; };
 		BF796B4D130BC1AF00846EAE /* GHUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF796B4C130BC1AF00846EAE /* GHUnit.framework */; };
 		BF796B6B130BC43F00846EAE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		BF796B6C130BC44500846EAE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -112,6 +114,7 @@
 		A8126069130D678900D6BA2D /* Icon-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-small@2x.png"; path = "icons/Icon-small@2x.png"; sourceTree = "<group>"; };
 		A812606A130D678900D6BA2D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = icons/Icon.png; sourceTree = "<group>"; };
 		A812606B130D678900D6BA2D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "icons/Icon@2x.png"; sourceTree = "<group>"; };
+		BF63E8A2130E83F500B44EDF /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
 		BF796B46130BC10500846EAE /* CityFeverTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CityFeverTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF796B48130BC10500846EAE /* CityFeverTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CityFeverTests-Info.plist"; sourceTree = "<group>"; };
 		BF796B4C130BC1AF00846EAE /* GHUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GHUnit.framework; sourceTree = "<group>"; };
@@ -218,6 +221,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BF63E8A2130E83F500B44EDF /* ImageCache.m */,
 				1D3623240D0F684500981E51 /* CityFeverAppDelegate.h */,
 				1D3623250D0F684500981E51 /* CityFeverAppDelegate.m */,
 				BF796E41130C252600846EAE /* View Controllers */,
@@ -493,6 +497,7 @@
 				BFBD0A58130AFC6300CA7941 /* NSData+Base64.m in Sources */,
 				BF796BC9130BDC5F00846EAE /* GTMLogger.m in Sources */,
 				BF796BFB130BE1AF00846EAE /* LocationModel.m in Sources */,
+				BF63E8A3130E83F500B44EDF /* ImageCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +529,7 @@
 				BF796B71130BC59200846EAE /* GHUnitIOSTestMain.m in Sources */,
 				BF796B73130BC5C700846EAE /* SetupTests.m in Sources */,
 				BF796BF8130BE13600846EAE /* ModelTests.m in Sources */,
+				BF63E8A4130E83F500B44EDF /* ImageCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

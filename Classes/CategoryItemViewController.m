@@ -22,9 +22,15 @@
 
 @synthesize baseURL;
 
-@synthesize thumbCache;
 @synthesize categories;
 @synthesize locationIndex;
+
+
+-(id)init
+{
+    [super initWithNibName:@"CategoryItemViewController" bundle:nil];
+    return self;
+}
 
 
 #pragma mark -
@@ -55,14 +61,6 @@
 {
     DBGS;
 
-    if (!baseURL) {
-        NSString *base_url = [[NSUserDefaults standardUserDefaults] stringForKey:@"base_url"];
-        if (!base_url) {
-            NSLog(@"ugh, can't get the 'base_url' defaults ... using hard-coded value.");
-            base_url = BFEVER_URL;
-        }
-        [self setBaseURL: [NSURL URLWithString: base_url]];
-    }
 
     NSURL *url = [NSURL URLWithString:@"/en/index.json"
                         relativeToURL:baseURL];
@@ -113,41 +111,6 @@
     [[self tableView] reloadData];
 }
 
-- (void)fetchThumbImage:(NSString *)path
-{
-    DBG(path);
-
-    NSURL *url = [NSURL URLWithString:path
-                        relativeToURL:baseURL];
-    NSDictionary *info = [NSDictionary dictionaryWithObject:path forKey:@"path"];
-
-    [self       enqueueURL: url
-         didFinishSelector: @selector(thumbFetchFinished:)
-           didFailSelector: @selector(requestFailed:)
-                  userInfo: info
-                  delegate: self];
-}
-
-- (void)thumbFetchFinished:(ASIHTTPRequest *)request
-{
-    DBGS;
-    NSDictionary   *info = [request userInfo];
-
-    @synchronized(self) {
-        [[self thumbCache] setObject: [request responseData]
-                         forKey: [info objectForKey:@"path"]];
-    }
-
-    [[self tableView] reloadData];
-}
-
-- (void)requestFailed:(ASIHTTPRequest *)request
-{
-    DBGS;
-}
-
-
-
 #pragma mark -
 #pragma mark View lifecycle {{{1
 
@@ -155,9 +118,18 @@
     DBGS;
     [super viewDidLoad];
 
-    if (!self.thumbCache) {
-        [self setThumbCache: [[[NSMutableDictionary alloc] init] autorelease]];
+    if (!baseURL) {
+        NSString *base_url = [[NSUserDefaults standardUserDefaults] stringForKey:@"base_url"];
+        if (!base_url) {
+            NSLog(@"ugh, can't get the 'base_url' defaults ... using hard-coded value.");
+            base_url = BFEVER_URL;
+        }
+        [self setBaseURL: [NSURL URLWithString: base_url]];
     }
+
+    thumbCache = [[ImageCache alloc]
+        initWithURL:baseURL
+           andQueue:[self queue]];
 
     if (!self.locationIndex) {
         [self setLocationIndex: [[[NSMutableDictionary alloc] init] autorelease]];
@@ -261,18 +233,10 @@
     }
 
     NSDictionary *location = [self locationForIndexPath: indexPath];
+    NSString *path = [location objectForKey:@"thumb"];
+    UIImage *img = [thumbCache imageForPath: path];
 
-    NSString *thumb = [location objectForKey:@"thumb"];
-    NSData *thumbData = [[self thumbCache] objectForKey: thumb];
-    if (thumbData) {
-        // cache hit
-        UIImage *img = [UIImage imageWithData: thumbData];
-        [[cell imageView] setImage: img];
-    } else {
-        // cache miss -- enqueue request to load image data
-        [self fetchThumbImage: thumb];
-    }
-
+    [[cell imageView] setImage: img];
     [[cell textLabel] setText: [location objectForKey: @"title"]];
     [[cell detailTextLabel] setText: [location objectForKey: @"description"]];
     return cell;
@@ -323,7 +287,7 @@
 
 - (void)dealloc {
     DBGS;
-    [self setThumbCache: nil];
+    [thumbCache release];
     [self setBaseURL: nil];
 
     [super dealloc];

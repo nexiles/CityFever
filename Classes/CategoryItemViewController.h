@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ImageCache.h"
 #import "ASINetworkQueue.h"
 
 @interface CategoryItemViewController : UITableViewController {
@@ -16,13 +17,13 @@
     NSMutableArray      *categories;
     NSURL               *baseURL;
 
-    NSMutableDictionary *thumbCache;
+    ImageCache          *thumbCache;
+
 }
 
 @property (retain) NSURL                            *baseURL;
 @property (retain) NSMutableArray                   *categories;
 @property (retain) NSMutableDictionary              *locationIndex;
-@property (retain) NSMutableDictionary              *thumbCache;
 
 - (ASINetworkQueue *)queue;
 
