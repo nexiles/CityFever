@@ -130,6 +130,7 @@
     thumbCache = [[ImageCache alloc]
         initWithURL:baseURL
            andQueue:[self queue]];
+    [thumbCache setDelegate: self];
 
     if (!self.locationIndex) {
         [self setLocationIndex: [[[NSMutableDictionary alloc] init] autorelease]];
@@ -176,6 +177,15 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
+
+#pragma mark -
+#pragma mark ImageCache delegate {{{1
+
+-(void)cacheUpdated:(ImageCache *)cache withPath:(NSString *)path
+{
+    DBGS;
+    [[self tableView] reloadData];
+}
 
 
 #pragma mark -

@@ -11,7 +11,7 @@
 #import "ImageCache.h"
 #import "ASINetworkQueue.h"
 
-@interface CategoryItemViewController : UITableViewController {
+@interface CategoryItemViewController : UITableViewController <ImageCacheDelegate> {
 
     NSMutableDictionary *locationIndex;
     NSMutableArray      *categories;
@@ -26,5 +26,7 @@
 @property (retain) NSMutableDictionary              *locationIndex;
 
 - (ASINetworkQueue *)queue;
+
+-(void)cacheUpdated:(ImageCache *)cache withPath:(NSString *)path;
 
 @end

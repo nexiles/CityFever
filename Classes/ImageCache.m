@@ -14,6 +14,7 @@
 @implementation ImageCache
 
 @synthesize queue;
+@synthesize delegate;
 
 - (id)initWithURL:(NSURL *)url andQueue:(ASINetworkQueue *)theQueue
 {
@@ -75,6 +76,12 @@
         [thumbCache setObject:[UIImage imageWithData:data]
                        forKey:path];
         [fetching removeObject:path];
+    }
+
+    if ([[self delegate] respondsToSelector:@selector(cacheUpdated:withPath:)]) {
+               [[self delegate] cacheUpdated:self
+                                    withPath:path];
+
     }
 }
 
