@@ -18,7 +18,7 @@
 
 @implementation CategoryItemViewController
 
-#define BFEVER_URL @"http://192.168.1.10:28001"
+#define BFEVER_URL @"http://www-berlin-fever.com"
 
 @synthesize baseURL;
 

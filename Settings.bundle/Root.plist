@@ -62,7 +62,7 @@
 			<key>Key</key>
 			<string>base_url</string>
 			<key>DefaultValue</key>
-			<string>http://192.168.1.10:28001</string>
+			<string>http://www.berlin-fever.com</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>
