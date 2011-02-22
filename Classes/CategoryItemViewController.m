@@ -49,6 +49,8 @@
                    userInfo:(NSDictionary *)info
                    delegate:(id)delegate
 {
+    DBGS;
+
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setDelegate: delegate];
     [request setDidFinishSelector: finish];
@@ -60,8 +62,6 @@
 - (void)loadCategoryIndex
 {
     DBGS;
-
-
     NSURL *url = [NSURL URLWithString:@"/en/index.json"
                         relativeToURL:baseURL];
 
@@ -244,9 +244,13 @@
 
     NSDictionary *location = [self locationForIndexPath: indexPath];
     NSString *path = [location objectForKey:@"thumb"];
-    UIImage *img = [thumbCache imageForPath: path];
+    if ((NSNull *)path != [NSNull null]) {
+        UIImage *img = [thumbCache imageForPath: path];
+        [[cell imageView] setImage: img];
+    } else {
+        [[cell imageView] setImage: nil];
+    }
 
-    [[cell imageView] setImage: img];
     [[cell textLabel] setText: [location objectForKey: @"title"]];
     [[cell detailTextLabel] setText: [location objectForKey: @"description"]];
     return cell;
@@ -275,7 +279,6 @@
 
     // enqueue loading of location details
     NSDictionary *location = [self locationForIndexPath: indexPath];
-    DBG(location);
     [self loadLocation: location forController: detailViewController];
 
 
